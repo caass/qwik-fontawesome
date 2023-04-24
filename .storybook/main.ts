@@ -1,5 +1,6 @@
 import type { StorybookConfig } from "storybook-framework-qwik";
-const config: StorybookConfig = {
+
+export default {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
@@ -8,10 +9,8 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: "storybook-framework-qwik",
-    options: {},
   },
   docs: {
     autodocs: "tag",
   },
-};
-export default config;
+} satisfies StorybookConfig;

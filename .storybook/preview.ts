@@ -1,4 +1,6 @@
-const preview: Preview = {
+import { Preview } from "storybook-framework-qwik/*";
+
+export default {
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
@@ -8,6 +10,4 @@ const preview: Preview = {
       },
     },
   },
-};
-
-export default preview;
+} satisfies Preview;
