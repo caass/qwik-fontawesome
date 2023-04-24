@@ -1,7 +1,7 @@
 {
-  "name": "my-qwik-library-name",
+  "name": "qwik-fontawesome",
   "version": "0.0.1",
-  "description": "Create a reusable Qwik component library",
+  "description": "Use FontAwesome Icons with Qwik",
   "main": "./lib/index.qwik.mjs",
   "qwik": "./lib/index.qwik.mjs",
   "types": "./lib-types/index.d.ts",
