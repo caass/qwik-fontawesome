@@ -1,6 +1,6 @@
 import type { PropFunction } from "@builder.io/qwik";
 import { component$ } from "@builder.io/qwik";
-import { Button } from "./button";
+import { Button } from "@/button/button";
 import "./header.css";
 
 type User = {
