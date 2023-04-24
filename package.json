@@ -58,6 +58,7 @@
     "storybook-framework-qwik": "^0.2.0",
     "typescript": "5.0.4",
     "undici": "5.21.2",
-    "vite": "4.2.2"
+    "vite": "4.2.2",
+    "vite-tsconfig-paths": "^4.2.0"
   }
 }
