@@ -7,7 +7,7 @@ export default () => {
       <head>
         <meta charSet="utf-8" />
         <title>Qwik-Fontawesome</title>
-        <style>{faCss}</style>
+        <style dangerouslySetInnerHTML={faCss} />
       </head>
       <body>
         <div>
