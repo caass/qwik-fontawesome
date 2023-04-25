@@ -1,12 +1,13 @@
 import { defineConfig } from "vite";
 import { qwikVite } from "@builder.io/qwik/optimizer";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { peerDependencies } from "./package.json";
 
-export default defineConfig(() => {
+export default defineConfig(({ command }) => {
+  const target = command === "build" ? "esnext" : "es2020";
+
   return {
     build: {
-      target: "es2020",
+      target,
       lib: {
         entry: "./src/index.ts",
         formats: ["es", "cjs"],
@@ -16,6 +17,6 @@ export default defineConfig(() => {
         external: Object.keys(peerDependencies),
       },
     },
-    plugins: [qwikVite(), tsconfigPaths()],
+    plugins: [qwikVite()],
   };
 });

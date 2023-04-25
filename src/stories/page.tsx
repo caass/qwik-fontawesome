@@ -1,5 +1,5 @@
 import { component$, useSignal } from "@builder.io/qwik";
-import { Header } from "@/header/header";
+import { Header } from "../components/header/header";
 import "./page.css";
 
 type User = {
