@@ -12,7 +12,7 @@ node_modules
 .mf
 .vscode
 .rollup.cache
-tsconfig.tsbuildinfo
+*.tsbuildinfo
 
 # Logs
 logs

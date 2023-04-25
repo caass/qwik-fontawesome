@@ -1,7 +1,7 @@
 {
   "name": "qwik-fontawesome",
   "version": "0.0.1",
-  "description": "Use FontAwesome Icons with Qwik",
+  "description": "Use Font Awesome Icons with Qwik",
   "main": "./lib/index.qwik.mjs",
   "qwik": "./lib/index.qwik.mjs",
   "types": "./lib-types/index.d.ts",
@@ -24,7 +24,7 @@
   "scripts": {
     "build": "qwik build",
     "build.lib": "vite build --mode lib",
-    "build.types": "tsc --emitDeclarationOnly",
+    "build.types": "tsc --project ./tsconfig.emit.json",
     "dev": "vite --mode ssr",
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
     "fmt": "prettier --write .",
