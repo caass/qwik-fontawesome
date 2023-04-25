@@ -4,14 +4,14 @@ import type { Meta, StoryObj } from "storybook-framework-qwik";
 import { FaIcon } from "./icon";
 import type { IconProps } from "./icon";
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-import { faCss } from "../..";
+import { FaStylesheet } from "../fa-stylesheet/fa-stylesheet";
 
 const meta = {
   title: "Icon",
   component: FaIcon,
   render: (args) => (
     <>
-      <style dangerouslySetInnerHTML={faCss} />
+      <FaStylesheet />
       <FaIcon {...args} />
     </>
   ),

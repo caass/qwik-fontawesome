@@ -1,5 +1,5 @@
 import { faHand } from "@fortawesome/free-regular-svg-icons";
-import { faCss, FaIcon } from ".";
+import { FaIcon, FaStylesheet } from ".";
 
 export default () => {
   return (
@@ -7,7 +7,7 @@ export default () => {
       <head>
         <meta charSet="utf-8" />
         <title>Qwik-Fontawesome</title>
-        <style dangerouslySetInnerHTML={faCss} />
+        <FaStylesheet />
       </head>
       <body>
         <div>
