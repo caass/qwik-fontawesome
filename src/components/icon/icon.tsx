@@ -1,27 +1,17 @@
 import { Fragment, JSXNode, component$ } from "@builder.io/qwik";
 import {
-  icon as processIcon,
+  icon,
   parse,
   AbstractElement,
+  FaSymbol,
 } from "@fortawesome/fontawesome-svg-core";
 
-import type { DOMAttributes } from "@builder.io/qwik";
 import type {
   IconLookup,
   IconProp,
   SizeProp,
   Transform,
 } from "@fortawesome/fontawesome-svg-core";
-
-/**
- * Resolve mapped types and show the derived keys and their types when hovering in
- * VS Code, instead of just showing the names those mapped types are defined with.
- *
- * [source](https://github.com/maninak/ts-xor/blob/master/src/types/Prettify.type.ts)
- */
-// type Prettify<T> = {
-//   [K in keyof T]: T[K];
-// } & {};
 
 type IconSpecificProps = {
   beat?: boolean;
@@ -45,7 +35,7 @@ type IconSpecificProps = {
   spin?: boolean;
   spinPulse?: boolean;
   spinReverse?: boolean;
-  symbol?: boolean | string;
+  symbol?: FaSymbol;
   title?: string;
   titleId?: string;
   transform?: string | Transform;
@@ -55,7 +45,52 @@ type IconSpecificProps = {
 // TODO: `export type IconProps = IconSpecificProps & DOMAttributes<SVGElement>` once https://github.com/literalpie/storybook-framework-qwik/issues/16 is closed
 export type IconProps = IconSpecificProps;
 
-function normalizeIconProp(icon: IconProp): IconLookup {
+const render = (elements: AbstractElement[]) =>
+  Fragment(
+    {
+      children: elements.map(
+        ({ tag, attributes, children }): JSXNode<string> => {
+          const flags = attributes?.flags ?? 0;
+          const key = attributes.key ?? null;
+
+          return {
+            type: tag,
+            props: attributes,
+            immutableProps: null,
+            children: children ? render(children) : null,
+            flags,
+            key,
+          };
+        }
+      ),
+    },
+    null,
+    0
+  );
+
+export const FaIcon = component$((props: IconProps) => {
+  const iconLookup = toIconProp(props.icon);
+  const classes = toClasses(props);
+  const transform = toTransform(props.transform);
+  const mask = props.mask ? toIconProp(props.mask) : undefined;
+
+  const processedIcon = icon(iconLookup, {
+    ...props,
+    classes,
+    transform,
+    mask,
+  });
+
+  if (!processedIcon) {
+    // error...
+    console.error(`Could not find icon ${iconLookup}`);
+    return null;
+  }
+
+  return render(processedIcon.abstract);
+});
+
+function toIconProp(icon: IconProp): IconLookup {
   if (Array.isArray(icon)) {
     const [prefix, iconName] = icon;
     return {
@@ -74,75 +109,34 @@ function normalizeIconProp(icon: IconProp): IconLookup {
   return icon;
 }
 
-function toClasses(
-  props: Pick<
-    IconProps,
-    | "beat"
-    | "fade"
-    | "beatFade"
-    | "bounce"
-    | "shake"
-    | "flash"
-    | "spin"
-    | "spinPulse"
-    | "spinReverse"
-    | "pulse"
-    | "fixedWidth"
-    | "inverse"
-    | "border"
-    | "listItem"
-    | "flip"
-    | "size"
-    | "rotation"
-    | "pull"
-    | "swapOpacity"
-  >
-) {
-  const {
-    beat,
-    fade,
-    beatFade,
-    bounce,
-    shake,
-    flash,
-    spin,
-    spinPulse,
-    spinReverse,
-    pulse,
-    fixedWidth,
-    inverse,
-    border,
-    listItem,
-    flip,
-    size,
-    rotation,
-    pull,
-    swapOpacity,
-  } = props;
-  // map of CSS class names to properties
+function toClasses(props: IconSpecificProps) {
   const classes = {
-    "fa-beat": beat,
-    "fa-fade": fade,
-    "fa-beat-fade": beatFade,
-    "fa-bounce": bounce,
-    "fa-shake": shake,
-    "fa-flash": flash,
-    "fa-spin": spin,
-    "fa-spin-reverse": spinReverse,
-    "fa-spin-pulse": spinPulse,
-    "fa-pulse": pulse,
-    "fa-fw": fixedWidth,
-    "fa-inverse": inverse,
-    "fa-border": border,
-    "fa-li": listItem,
-    "fa-flip": flip === true,
-    "fa-flip-horizontal": flip === "horizontal" || flip === "both",
-    "fa-flip-vertical": flip === "vertical" || flip === "both",
-    [`fa-${size}`]: typeof size !== "undefined" && size !== null,
-    [`fa-rotate-${rotation}`]:
-      typeof rotation !== "undefined" && rotation !== null && rotation !== 0,
-    [`fa-pull-${pull}`]: typeof pull !== "undefined" && pull !== null,
-    "fa-swap-opacity": swapOpacity,
+    "fa-beat": props.beat,
+    "fa-fade": props.fade,
+    "fa-beat-fade": props.beatFade,
+    "fa-bounce": props.bounce,
+    "fa-shake": props.shake,
+    "fa-flash": props.flash,
+    "fa-spin": props.spin,
+    "fa-spin-reverse": props.spinReverse,
+    "fa-spin-pulse": props.spinPulse,
+    "fa-pulse": props.pulse,
+    "fa-fw": props.fixedWidth,
+    "fa-inverse": props.inverse,
+    "fa-border": props.border,
+    "fa-li": props.listItem,
+    "fa-flip": props.flip === true,
+    "fa-flip-horizontal": props.flip === "horizontal" || props.flip === "both",
+    "fa-flip-vertical": props.flip === "vertical" || props.flip === "both",
+    [`fa-${props.size}`]:
+      typeof props.size !== "undefined" && props.size !== null,
+    [`fa-rotate-${props.rotation}`]:
+      typeof props.rotation !== "undefined" &&
+      props.rotation !== null &&
+      props.rotation !== 0,
+    [`fa-pull-${props.pull}`]:
+      typeof props.pull !== "undefined" && props.pull !== null,
+    "fa-swap-opacity": props.swapOpacity,
   };
 
   // map over all the keys in the classes object
@@ -158,47 +152,4 @@ function toTransform(
   return typeof transformProp === "string"
     ? parse.transform(transformProp)
     : transformProp;
-}
-
-export const FaIcon = component$((props: IconProps) => {
-  const iconLookup = normalizeIconProp(props.icon);
-  // todo: also user classes
-  const classes = toClasses(props);
-  const transform = toTransform(props.transform);
-  const mask = props.mask ? normalizeIconProp(props.mask) : undefined;
-
-  const processedIcon = processIcon(iconLookup, {
-    ...props,
-    classes,
-    transform,
-    mask,
-  });
-
-  if (!processedIcon) {
-    // error...
-    console.error(`Could not find icon ${iconLookup}`);
-    return null;
-  }
-
-  return render(processedIcon.abstract, props);
-});
-
-function render(elements: AbstractElement[], props: DOMAttributes<SVGElement>) {
-  const rendered: JSXNode<string>[] = elements.map(
-    ({ tag, attributes, children }) => {
-      const flags = attributes?.flags ?? 0;
-      const key = attributes.key ?? null;
-
-      return {
-        type: tag,
-        props,
-        immutableProps: attributes,
-        children: children ? render(children, {}) : null,
-        flags,
-        key,
-      } satisfies JSXNode<string>;
-    }
-  );
-
-  return Fragment({ children: rendered }, null, 0);
 }

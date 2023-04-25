@@ -14,8 +14,9 @@ export default meta;
 
 type Story = StoryObj<IconProps>;
 
-export const Basic: Story = {
+export const Static: Story = {
   args: {
     icon: faThumbsUp,
+    size: "4x",
   },
 };
