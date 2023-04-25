@@ -8,15 +8,14 @@ import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 const meta = {
   title: "Icon",
   component: FaIcon,
+  args: {
+    icon: faThumbsUp,
+    size: "8x",
+  },
 } satisfies Meta<IconProps>;
 
 export default meta;
 
 type Story = StoryObj<IconProps>;
 
-export const Static: Story = {
-  args: {
-    icon: faThumbsUp,
-    size: "4x",
-  },
-};
+export const Static: Story = {};
