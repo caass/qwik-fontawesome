@@ -1,4 +1,5 @@
 import { faHand } from "@fortawesome/free-regular-svg-icons";
+
 import { FaIcon, FaStylesheet } from ".";
 
 export default () => {

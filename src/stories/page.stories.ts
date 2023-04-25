@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from "storybook-framework-qwik";
 import { within, userEvent } from "@storybook/testing-library";
 
 import { Page } from "./page";
+
+import type { Meta, StoryObj } from "storybook-framework-qwik";
 
 const meta = {
   title: "Example/Page",
@@ -10,11 +11,10 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
     layout: "fullscreen",
   },
-  args: { test: "hello" },
-} satisfies Meta<{}>;
+} satisfies Meta<Record<string, never>>;
 
 export default meta;
-type Story = StoryObj<{}>;
+type Story = StoryObj<Record<string, never>>;
 
 export const LoggedOut: Story = {};
 

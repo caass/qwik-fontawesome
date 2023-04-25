@@ -1,8 +1,10 @@
 import { action } from "@storybook/addon-actions";
 import { $ } from "@builder.io/qwik";
+
+import { Button } from "./button";
+
 import type { Meta, StoryObj } from "storybook-framework-qwik";
 import type { ButtonProps, onClickEvent } from "./button";
-import { Button } from "./button";
 
 const meta = {
   title: "Button",

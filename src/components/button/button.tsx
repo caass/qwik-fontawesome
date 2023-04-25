@@ -1,6 +1,8 @@
-import type { PropFunction, QwikMouseEvent } from "@builder.io/qwik";
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
+
 import buttonStyles from "./button.css?inline";
+
+import type { PropFunction, QwikMouseEvent } from "@builder.io/qwik";
 
 export interface ButtonProps {
   /**

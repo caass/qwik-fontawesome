@@ -3,34 +3,65 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    node: true
+    node: true,
   },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:qwik/recommended', 'plugin:storybook/recommended'],
-  parser: '@typescript-eslint/parser',
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:qwik/recommended",
+    "plugin:storybook/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+  ],
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     tsconfigRootDir: __dirname,
-    project: ['./tsconfig.eslint.json'],
+    project: ["./tsconfig.eslint.json"],
     ecmaVersion: 2021,
-    sourceType: 'module',
+    sourceType: "module",
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
-  plugins: ['@typescript-eslint'],
+  settings: { "import/resolver": { typescript: true, node: true } },
+  plugins: ["@typescript-eslint"],
   rules: {
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-inferrable-types': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/no-empty-interface': 'off',
-    '@typescript-eslint/no-namespace': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    '@typescript-eslint/no-this-alias': 'off',
-    '@typescript-eslint/ban-types': 'off',
-    '@typescript-eslint/ban-ts-comment': 'off',
-    'prefer-spread': 'off',
-    'no-case-declarations': 'off',
-    'no-console': 'off',
-    '@typescript-eslint/no-unused-vars': ['error']
-  }
+    "no-console": "off",
+    "no-multiple-empty-lines": 2,
+
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/consistent-type-imports": [
+      2,
+      {
+        prefer: "type-imports",
+        fixStyle: "separate-type-imports",
+      },
+    ],
+
+    "import/no-unresolved": [
+      2,
+      {
+        ignore: ["@qwik-client-manifest"],
+      },
+    ],
+    "import/order": [
+      2,
+      {
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type",
+        ],
+        distinctGroup: true,
+        "newlines-between": "always",
+      },
+    ],
+    "import/newline-after-import": 2,
+    "import/consistent-type-specifier-style": [2, "prefer-top-level"],
+  },
 };

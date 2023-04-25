@@ -1,10 +1,13 @@
 // import { action } from "@storybook/addon-actions";
 // import { $ } from "@builder.io/qwik";
-import type { Meta, StoryObj } from "storybook-framework-qwik";
-import { FaIcon } from "./icon";
-import type { IconProps } from "./icon";
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+
 import { FaStylesheet } from "../fa-stylesheet/fa-stylesheet";
+
+import { FaIcon } from "./icon";
+
+import type { Meta, StoryObj } from "storybook-framework-qwik";
+import type { IconProps } from "./icon";
 
 const meta = {
   title: "Icon",

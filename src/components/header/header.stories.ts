@@ -1,8 +1,10 @@
-import type { Meta, StoryObj } from "storybook-framework-qwik";
-import type { HeaderProps } from "./header";
-import { Header } from "./header";
 import { $ } from "@builder.io/qwik";
 import { action } from "@storybook/addon-actions";
+
+import { Header } from "./header";
+
+import type { HeaderProps } from "./header";
+import type { Meta, StoryObj } from "storybook-framework-qwik";
 
 const meta = {
   title: "Example/Header",

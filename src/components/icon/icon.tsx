@@ -19,7 +19,7 @@ import type { DOMAttributes, Signal, JSXNode } from "@builder.io/qwik";
  * https://stackoverflow.com/a/57334147
  */
 type RequireKeys<T> = { [K in keyof T]-?: [T[K]] } extends infer U
-  ? U extends Record<keyof U, [any]>
+  ? U extends Record<keyof U, [unknown]>
     ? { [K in keyof U]: U[K][0] }
     : never
   : never;
@@ -182,7 +182,7 @@ function toUserClasses(classes?: IconProps["class"]): string[] {
     .map((key) => key.trim());
 }
 
-function isSignal(x: unknown): x is Signal<any> {
+function isSignal(x: unknown): x is Signal<unknown> {
   return (
     typeof x === "object" && x !== null && x.toString().startsWith("[Signal (")
   );
