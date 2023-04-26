@@ -33,7 +33,7 @@
     "start": "vite --open --mode ssr"
   },
   "devDependencies": {
-    "@builder.io/qwik": "0.103.0",
+    "@builder.io/qwik": "0.104.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
@@ -44,8 +44,10 @@
     "eslint-import-resolver-typescript": "^3.5.5",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-qwik": "latest",
+    "normalize.css": "^8.0.1",
     "np": "7.6.1",
     "prettier": "2.8.7",
+    "purecss": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.0",
@@ -55,7 +57,7 @@
     "vite": "4.2.2"
   },
   "peerDependencies": {
-    "@builder.io/qwik": "^0.103.0",
+    "@builder.io/qwik": "^0.104.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0"
   },
   "engines": {
