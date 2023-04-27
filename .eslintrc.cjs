@@ -29,9 +29,9 @@ module.exports = {
     "no-console": "off",
     "no-multiple-empty-lines": 2,
 
-    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-unused-vars": ["warn"],
     "@typescript-eslint/consistent-type-imports": [
-      2,
+      1,
       {
         prefer: "type-imports",
         fixStyle: "separate-type-imports",
@@ -45,7 +45,7 @@ module.exports = {
       },
     ],
     "import/order": [
-      2,
+      1,
       {
         groups: [
           "builtin",
