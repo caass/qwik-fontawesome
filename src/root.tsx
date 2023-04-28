@@ -1,11 +1,9 @@
-// import { faFontAwesomeLogoFull } from "@fortawesome/free-regular-svg-icons";
 import {
   faBoltLightning,
   faPlus,
   faFontAwesome,
   faEquals,
   faFaceGrinHearts,
-  faCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { component$, useStyles$, $, useSignal } from "@builder.io/qwik";
 
