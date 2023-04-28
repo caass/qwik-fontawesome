@@ -1,5 +1,6 @@
 import { parse } from "@fortawesome/fontawesome-svg-core";
 
+import type { QwikIntrinsicElements } from "@builder.io/qwik";
 import type {
   IconProp,
   SizeProp,
@@ -7,10 +8,7 @@ import type {
   FaSymbol,
   IconLookup,
   IconParams,
-  Attributes,
 } from "@fortawesome/fontawesome-svg-core";
-import type { Signal } from "@builder.io/qwik";
-import { QwikIntrinsicElements } from "@builder.io/qwik";
 
 type IconSpecificProps = {
   beat?: boolean;
@@ -78,7 +76,7 @@ export const extractIconSpecificProps = (
     ...svgProps
   } = props;
 
-  let iconProps = {
+  const iconProps = {
     beat,
     border,
     beatFade,
@@ -124,7 +122,7 @@ export const toIconParams = (props: IconSpecificProps) => ({
     title: props.title,
     titleId: props.titleId,
     classes: toFaClasses(props),
-    attributes: toAttributes(props),
+    // TODO: attributes: toAttributes(props),
     transform: toTransform(props.transform),
     symbol: props.symbol,
     mask: props.mask && toIconLookup(props.mask),
@@ -188,20 +186,10 @@ function toFaClasses(props: IconSpecificProps) {
     .map(([key]) => key);
 }
 
-function isSignal(x: unknown): x is Signal<unknown> {
-  return (
-    typeof x === "object" && x !== null && x.toString().startsWith("[Signal (")
-  );
-}
-
 function toTransform(
   transformProp: IconSpecificProps["transform"]
 ): Transform | undefined {
   return typeof transformProp === "string"
     ? parse.transform(transformProp)
     : transformProp;
-}
-
-function toAttributes(props: IconSpecificProps) {
-  return {} satisfies Attributes;
 }

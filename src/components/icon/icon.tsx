@@ -1,4 +1,4 @@
-import { QwikJSX, component$, createElement } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import { icon } from "@fortawesome/fontawesome-svg-core";
 
 import { extractIconSpecificProps, toIconParams } from "./props";
