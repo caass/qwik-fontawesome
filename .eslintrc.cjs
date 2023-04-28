@@ -9,7 +9,6 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:qwik/recommended",
-    "plugin:storybook/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
   ],
