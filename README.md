@@ -34,7 +34,7 @@ import {
   ServiceWorkerRegister,
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
-import { FaStyleshhet } from "qwik-fontawesome";
+import { FaStylesheet } from "qwik-fontawesome";
 
 import "./global.css";
 
